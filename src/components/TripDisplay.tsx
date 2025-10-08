@@ -10,9 +10,9 @@ export default function TripDisplay({ content, onSave, isSaving }: TripDisplayPr
   const formatText = (text: string): string => {
     let html = text;
 
-    html = html.replace(/### (.*?)(\n|$)/g, '<h3 class="text-xl font-bold bg-gradient-to-r from-[#b415ff] to-[#df8908] bg-clip-text text-transparent mt-6 mb-3">$1</h3>');
-    html = html.replace(/## (.*?)(\n|$)/g, '<h2 class="text-2xl font-bold bg-gradient-to-r from-[#b415ff] to-[#df8908] bg-clip-text text-transparent mt-8 mb-4">$1</h2>');
-    html = html.replace(/# (.*?)(\n|$)/g, '<h1 class="text-3xl font-bold bg-gradient-to-r from-[#b415ff] to-[#df8908] bg-clip-text text-transparent mt-8 mb-4">$1</h1>');
+    html = html.replace(/### (.*?)(\n|$)/g, '<h3 class="text-xl font-bold bg-gradient-to-r from-[#b415ff] to-[#df8908] bg-clip-text text-transparent mt-8 mb-4 pt-4">$1</h3>');
+    html = html.replace(/## (.*?)(\n|$)/g, '<h2 class="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-[#b415ff] to-[#df8908] bg-clip-text text-transparent mt-10 mb-5 pt-6">$1</h2>');
+    html = html.replace(/# (.*?)(\n|$)/g, '<h1 class="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-[#b415ff] to-[#df8908] bg-clip-text text-transparent mt-10 mb-5 pt-6">$1</h1>');
 
     html = html.replace(/\*\*(.*?)\*\*/g, '<strong class="font-semibold text-white">$1</strong>');
     html = html.replace(/\*(.*?)\*/g, '<em class="italic">$1</em>');
@@ -106,7 +106,7 @@ export default function TripDisplay({ content, onSave, isSaving }: TripDisplayPr
             <button
               onClick={onSave}
               disabled={isSaving}
-              className="flex items-center gap-2 px-4 py-3 bg-gradient-to-r from-[#b415ff] to-[#df8908] text-white font-semibold rounded-xl hover:shadow-lg hover:shadow-purple-500/50 transition-all disabled:opacity-50 flex-1 sm:flex-initial justify-center"
+              className="flex items-center gap-2 px-4 py-3 bg-gradient-to-r from-[#b415ff] to-[#df8908] text-white font-semibold rounded-xl hover:opacity-90 transition-all disabled:opacity-50 flex-1 sm:flex-initial justify-center"
             >
               <Save className="w-5 h-5" />
               {isSaving ? 'Saving...' : 'Save Trip'}

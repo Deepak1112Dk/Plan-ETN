@@ -108,7 +108,7 @@ export default function ChatBot() {
     return (
       <button
         onClick={() => setIsOpen(true)}
-        className="fixed bottom-6 right-6 p-4 bg-gradient-to-r from-[#b415ff] to-[#df8908] text-white rounded-full shadow-2xl shadow-purple-500/50 hover:shadow-purple-500/70 transition-all transform hover:scale-110 z-50"
+        className="fixed bottom-6 right-6 p-4 bg-gradient-to-r from-[#b415ff] to-[#df8908] text-white rounded-full shadow-2xl hover:opacity-90 transition-all transform hover:scale-110 z-50"
       >
         <MessageCircle className="w-6 h-6" />
       </button>
@@ -116,7 +116,7 @@ export default function ChatBot() {
   }
 
   return (
-    <div className="fixed bottom-6 right-6 w-[calc(100vw-3rem)] sm:w-96 h-[calc(100vh-6rem)] sm:h-[600px] bg-gray-900 border border-gray-800 rounded-2xl shadow-2xl shadow-purple-500/30 flex flex-col z-50">
+    <div className="fixed bottom-6 right-6 w-[calc(100vw-3rem)] sm:w-96 h-[calc(100vh-6rem)] sm:h-[600px] bg-gray-900 border border-gray-800 rounded-2xl shadow-2xl flex flex-col z-50">
       <div className="bg-gradient-to-r from-[#b415ff] to-[#df8908] text-white p-4 rounded-t-2xl flex items-center justify-between">
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center">
@@ -209,7 +209,7 @@ export default function ChatBot() {
           <button
             onClick={handleSend}
             disabled={isLoading || (!input.trim() && selectedImages.length === 0)}
-            className="p-2 bg-gradient-to-r from-[#b415ff] to-[#df8908] text-white rounded-lg hover:shadow-lg hover:shadow-purple-500/50 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+            className="p-2 bg-gradient-to-r from-[#b415ff] to-[#df8908] text-white rounded-lg hover:opacity-90 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
           >
             <Send className="w-5 h-5" />
           </button>

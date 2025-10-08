@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { MapPin, Sparkles, BookOpen } from 'lucide-react';
+import { MapPin, Sparkles, BookOpen, Home } from 'lucide-react';
 import TripForm, { TripFormData } from './components/TripForm';
 import TripDisplay from './components/TripDisplay';
 import SavedTrips from './components/SavedTrips';
@@ -88,9 +88,7 @@ function App() {
               onClick={() => setView('home')}
               className="flex items-center gap-2 sm:gap-3 group cursor-pointer"
             >
-              <div className="p-2 bg-gradient-to-br from-[#b415ff] to-[#df8908] rounded-xl group-hover:shadow-lg transition-all">
-                <MapPin className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
-              </div>
+              <img src="/logoo.png" alt="ETN Logo" className="w-10 h-10 sm:w-12 sm:h-12 object-contain" />
               <div className="hidden sm:block">
                 <h1 className="text-lg sm:text-xl font-bold bg-gradient-to-r from-[#b415ff] to-[#df8908] bg-clip-text text-transparent">
                   ETN Trip Planner
@@ -105,7 +103,7 @@ function App() {
             <div className="flex gap-2 sm:gap-3">
               <button
                 onClick={() => setView('form')}
-                className="flex items-center gap-2 px-3 sm:px-4 py-2 bg-gradient-to-r from-[#b415ff] to-[#df8908] text-white font-semibold rounded-xl hover:shadow-lg hover:shadow-purple-500/50 transition-all text-sm sm:text-base"
+                className="flex items-center gap-2 px-3 sm:px-4 py-2 bg-gradient-to-r from-[#b415ff] to-[#df8908] text-white font-semibold rounded-xl hover:opacity-90 transition-all text-sm sm:text-base"
               >
                 <Sparkles className="w-4 h-4" />
                 <span className="hidden sm:inline">New Trip</span>
@@ -117,6 +115,15 @@ function App() {
                 <BookOpen className="w-4 h-4" />
                 <span className="hidden sm:inline">Saved</span>
               </button>
+              <a
+                href="https://exploretamilagam.netlify.app/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 px-3 sm:px-4 py-2 bg-gray-900 border-2 border-gray-800 text-white font-semibold rounded-xl hover:border-[#df8908] transition-all text-sm sm:text-base"
+              >
+                <Home className="w-4 h-4" />
+                <span className="hidden sm:inline">Home</span>
+              </a>
             </div>
           </div>
         </div>
@@ -125,8 +132,8 @@ function App() {
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
         {view === 'home' && (
           <div className="text-center py-10 sm:py-20">
-            <div className="mb-8 inline-block p-4 bg-gradient-to-br from-[#b415ff] to-[#df8908] rounded-3xl shadow-2xl shadow-purple-500/50">
-              <MapPin className="w-16 h-16 sm:w-20 sm:h-20 text-white" />
+            <div className="mb-8 inline-block">
+              <img src="/logoo.png" alt="ETN Logo" className="w-32 h-32 sm:w-40 sm:h-40 object-contain" />
             </div>
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4 px-4">
               Discover Tamil Nadu
@@ -138,14 +145,14 @@ function App() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center px-4">
               <button
                 onClick={() => setView('form')}
-                className="px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-[#b415ff] to-[#df8908] text-white font-bold rounded-xl hover:shadow-xl hover:shadow-purple-500/50 transform hover:scale-105 transition-all flex items-center justify-center gap-2"
+                className="px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-[#b415ff] to-[#df8908] text-white font-bold rounded-xl hover:opacity-90 transform hover:scale-105 transition-all flex items-center justify-center gap-2"
               >
                 <Sparkles className="w-5 h-5" />
                 Start Planning
               </button>
               <button
                 onClick={() => setView('saved')}
-                className="px-6 sm:px-8 py-3 sm:py-4 bg-gray-900 border-2 border-gray-800 text-white font-bold rounded-xl hover:border-[#b415ff] hover:shadow-lg hover:shadow-purple-500/30 transition-all flex items-center justify-center gap-2"
+                className="px-6 sm:px-8 py-3 sm:py-4 bg-gray-900 border-2 border-gray-800 text-white font-bold rounded-xl hover:border-[#b415ff] transition-all flex items-center justify-center gap-2"
               >
                 <BookOpen className="w-5 h-5" />
                 View Saved Trips
@@ -196,7 +203,7 @@ function App() {
       <footer className="bg-black/90 backdrop-blur-md mt-12 sm:mt-20 py-6 sm:py-8 border-t border-gray-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <p className="text-gray-400 text-sm sm:text-base">
-            Powered by Gemini AI • Explore the incredible heritage of Tamil Nadu
+            Explore the incredible heritage of Tamil Nadu
           </p>
           <p className="text-gray-500 text-xs sm:text-sm mt-2">
             Experience temples, beaches, hill stations, and rich culture

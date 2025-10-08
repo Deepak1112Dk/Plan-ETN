@@ -50,7 +50,7 @@ export default function SavedTrips({ onViewTrip }: SavedTripsProps) {
       <h2 className="text-2xl sm:text-3xl font-bold text-white mb-6">Your Saved Trips</h2>
       <div className="grid gap-4">
         {trips.map(trip => (
-          <div key={trip.id} className="bg-gray-900 rounded-2xl shadow-lg shadow-purple-500/10 p-4 sm:p-6 hover:shadow-xl hover:shadow-purple-500/20 transition-all border border-gray-800">
+          <div key={trip.id} className="bg-gray-900 rounded-2xl shadow-lg p-4 sm:p-6 hover:shadow-xl transition-all border border-gray-800">
             <div className="flex flex-col sm:flex-row items-start justify-between gap-4">
               <div className="flex-1 w-full">
                 <h3 className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-[#b415ff] to-[#df8908] bg-clip-text text-transparent mb-3">{trip.destination}</h3>
@@ -74,7 +74,7 @@ export default function SavedTrips({ onViewTrip }: SavedTripsProps) {
               <div className="flex gap-2 w-full sm:w-auto">
                 <button
                   onClick={() => onViewTrip(trip)}
-                  className="flex-1 sm:flex-initial p-2 bg-gradient-to-r from-[#b415ff] to-[#df8908] text-white rounded-lg hover:shadow-lg hover:shadow-purple-500/50 transition-all"
+                  className="flex-1 sm:flex-initial p-2 bg-gradient-to-r from-[#b415ff] to-[#df8908] text-white rounded-lg hover:opacity-90 transition-all"
                   title="View trip"
                 >
                   <Eye className="w-5 h-5 mx-auto" />
