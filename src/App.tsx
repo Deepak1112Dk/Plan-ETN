@@ -80,96 +80,99 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-orange-50 via-white to-red-50">
-      <nav className="bg-white/80 backdrop-blur-md shadow-sm sticky top-0 z-40">
+    <div className="min-h-screen bg-black">
+      <nav className="bg-black/90 backdrop-blur-md shadow-lg border-b border-gray-800 sticky top-0 z-40">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             <button
               onClick={() => setView('home')}
-              className="flex items-center gap-3 group cursor-pointer"
+              className="flex items-center gap-2 sm:gap-3 group cursor-pointer"
             >
-              <div className="p-2 bg-gradient-to-br from-orange-500 to-red-600 rounded-xl group-hover:shadow-lg transition-all">
-                <MapPin className="w-6 h-6 text-white" />
+              <div className="p-2 bg-gradient-to-br from-[#b415ff] to-[#df8908] rounded-xl group-hover:shadow-lg transition-all">
+                <MapPin className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
               </div>
-              <div>
-                <h1 className="text-xl font-bold bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent">
-                  Tamil Nadu Explorer
+              <div className="hidden sm:block">
+                <h1 className="text-lg sm:text-xl font-bold bg-gradient-to-r from-[#b415ff] to-[#df8908] bg-clip-text text-transparent">
+                  ETN Trip Planner
                 </h1>
-                <p className="text-xs text-gray-600">AI-Powered Trip Planner</p>
+                <p className="text-xs text-gray-400">AI-Powered Trip Planner</p>
               </div>
+              <h1 className="sm:hidden text-lg font-bold bg-gradient-to-r from-[#b415ff] to-[#df8908] bg-clip-text text-transparent">
+                ETN Trip Planner
+              </h1>
             </button>
 
-            <div className="flex gap-3">
+            <div className="flex gap-2 sm:gap-3">
               <button
                 onClick={() => setView('form')}
-                className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-orange-500 to-red-600 text-white font-semibold rounded-xl hover:shadow-lg transition-all"
+                className="flex items-center gap-2 px-3 sm:px-4 py-2 bg-gradient-to-r from-[#b415ff] to-[#df8908] text-white font-semibold rounded-xl hover:shadow-lg hover:shadow-purple-500/50 transition-all text-sm sm:text-base"
               >
                 <Sparkles className="w-4 h-4" />
-                New Trip
+                <span className="hidden sm:inline">New Trip</span>
               </button>
               <button
                 onClick={() => setView('saved')}
-                className="flex items-center gap-2 px-4 py-2 bg-white border-2 border-gray-200 text-gray-700 font-semibold rounded-xl hover:border-orange-500 transition-all"
+                className="flex items-center gap-2 px-3 sm:px-4 py-2 bg-gray-900 border-2 border-gray-800 text-white font-semibold rounded-xl hover:border-[#b415ff] transition-all text-sm sm:text-base"
               >
                 <BookOpen className="w-4 h-4" />
-                Saved Trips
+                <span className="hidden sm:inline">Saved</span>
               </button>
             </div>
           </div>
         </div>
       </nav>
 
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
         {view === 'home' && (
-          <div className="text-center py-20">
-            <div className="mb-8 inline-block p-4 bg-gradient-to-br from-orange-500 to-red-600 rounded-3xl shadow-2xl">
-              <MapPin className="w-20 h-20 text-white" />
+          <div className="text-center py-10 sm:py-20">
+            <div className="mb-8 inline-block p-4 bg-gradient-to-br from-[#b415ff] to-[#df8908] rounded-3xl shadow-2xl shadow-purple-500/50">
+              <MapPin className="w-16 h-16 sm:w-20 sm:h-20 text-white" />
             </div>
-            <h1 className="text-5xl font-bold text-gray-900 mb-4">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4 px-4">
               Discover Tamil Nadu
             </h1>
-            <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
+            <p className="text-base sm:text-lg md:text-xl text-gray-300 mb-8 max-w-2xl mx-auto px-4">
               Explore the soul, culture, and timeless beauty of incredible Tamil Nadu.
               Let AI craft your perfect journey through temples, beaches, hills, and heritage.
             </p>
-            <div className="flex gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center px-4">
               <button
                 onClick={() => setView('form')}
-                className="px-8 py-4 bg-gradient-to-r from-orange-500 to-red-600 text-white font-bold rounded-xl hover:shadow-xl transform hover:scale-105 transition-all flex items-center gap-2"
+                className="px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-[#b415ff] to-[#df8908] text-white font-bold rounded-xl hover:shadow-xl hover:shadow-purple-500/50 transform hover:scale-105 transition-all flex items-center justify-center gap-2"
               >
                 <Sparkles className="w-5 h-5" />
                 Start Planning
               </button>
               <button
                 onClick={() => setView('saved')}
-                className="px-8 py-4 bg-white border-2 border-gray-200 text-gray-700 font-bold rounded-xl hover:border-orange-500 hover:shadow-lg transition-all flex items-center gap-2"
+                className="px-6 sm:px-8 py-3 sm:py-4 bg-gray-900 border-2 border-gray-800 text-white font-bold rounded-xl hover:border-[#b415ff] hover:shadow-lg hover:shadow-purple-500/30 transition-all flex items-center justify-center gap-2"
               >
                 <BookOpen className="w-5 h-5" />
                 View Saved Trips
               </button>
             </div>
 
-            <div className="mt-20 grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-              <div className="bg-white p-6 rounded-2xl shadow-lg">
-                <div className="w-12 h-12 bg-orange-100 rounded-xl flex items-center justify-center mb-4 mx-auto">
-                  <Sparkles className="w-6 h-6 text-orange-600" />
+            <div className="mt-12 sm:mt-20 grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 max-w-4xl mx-auto">
+              <div className="bg-gray-900 p-6 rounded-2xl shadow-lg border border-gray-800 hover:border-[#b415ff] transition-all">
+                <div className="w-12 h-12 bg-gradient-to-br from-[#b415ff] to-[#df8908] rounded-xl flex items-center justify-center mb-4 mx-auto">
+                  <Sparkles className="w-6 h-6 text-white" />
                 </div>
-                <h3 className="font-bold text-gray-900 mb-2">AI-Powered Planning</h3>
-                <p className="text-gray-600 text-sm">Get personalized itineraries generated by advanced AI</p>
+                <h3 className="font-bold text-white mb-2">AI-Powered Planning</h3>
+                <p className="text-gray-400 text-sm">Get personalized itineraries generated by advanced AI</p>
               </div>
-              <div className="bg-white p-6 rounded-2xl shadow-lg">
-                <div className="w-12 h-12 bg-orange-100 rounded-xl flex items-center justify-center mb-4 mx-auto">
-                  <MapPin className="w-6 h-6 text-orange-600" />
+              <div className="bg-gray-900 p-6 rounded-2xl shadow-lg border border-gray-800 hover:border-[#df8908] transition-all">
+                <div className="w-12 h-12 bg-gradient-to-br from-[#b415ff] to-[#df8908] rounded-xl flex items-center justify-center mb-4 mx-auto">
+                  <MapPin className="w-6 h-6 text-white" />
                 </div>
-                <h3 className="font-bold text-gray-900 mb-2">Rich Destinations</h3>
-                <p className="text-gray-600 text-sm">Explore 20+ destinations across Tamil Nadu</p>
+                <h3 className="font-bold text-white mb-2">Rich Destinations</h3>
+                <p className="text-gray-400 text-sm">Explore 20+ destinations across Tamil Nadu</p>
               </div>
-              <div className="bg-white p-6 rounded-2xl shadow-lg">
-                <div className="w-12 h-12 bg-orange-100 rounded-xl flex items-center justify-center mb-4 mx-auto">
-                  <BookOpen className="w-6 h-6 text-orange-600" />
+              <div className="bg-gray-900 p-6 rounded-2xl shadow-lg border border-gray-800 hover:border-[#b415ff] transition-all">
+                <div className="w-12 h-12 bg-gradient-to-br from-[#b415ff] to-[#df8908] rounded-xl flex items-center justify-center mb-4 mx-auto">
+                  <BookOpen className="w-6 h-6 text-white" />
                 </div>
-                <h3 className="font-bold text-gray-900 mb-2">Save & Share</h3>
-                <p className="text-gray-600 text-sm">Save your trips and share with friends</p>
+                <h3 className="font-bold text-white mb-2">Save & Share</h3>
+                <p className="text-gray-400 text-sm">Save your trips and share with friends</p>
               </div>
             </div>
           </div>
@@ -190,12 +193,12 @@ function App() {
 
       <ChatBot />
 
-      <footer className="bg-white/80 backdrop-blur-md mt-20 py-8 border-t border-gray-200">
+      <footer className="bg-black/90 backdrop-blur-md mt-12 sm:mt-20 py-6 sm:py-8 border-t border-gray-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <p className="text-gray-600">
+          <p className="text-gray-400 text-sm sm:text-base">
             Powered by Gemini AI • Explore the incredible heritage of Tamil Nadu
           </p>
-          <p className="text-gray-500 text-sm mt-2">
+          <p className="text-gray-500 text-xs sm:text-sm mt-2">
             Experience temples, beaches, hill stations, and rich culture
           </p>
         </div>

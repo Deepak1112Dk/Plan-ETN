@@ -144,27 +144,27 @@ export default function TripForm({ onSubmit, isLoading }: TripFormProps) {
   };
 
   return (
-    <div className="bg-white rounded-2xl shadow-xl p-8 max-w-2xl mx-auto">
+    <div className="bg-gray-900 rounded-2xl shadow-xl shadow-purple-500/20 p-4 sm:p-6 md:p-8 max-w-2xl mx-auto border border-gray-800">
       <div className="flex items-center gap-3 mb-6">
-        <div className="p-3 bg-gradient-to-br from-orange-500 to-red-600 rounded-xl">
-          <Sparkles className="w-6 h-6 text-white" />
+        <div className="p-3 bg-gradient-to-br from-[#b415ff] to-[#df8908] rounded-xl">
+          <Sparkles className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
         </div>
         <div>
-          <h2 className="text-2xl font-bold text-gray-900">Plan Your Tamil Nadu Adventure</h2>
-          <p className="text-gray-600 text-sm">Discover the soul, culture, and timeless beauty</p>
+          <h2 className="text-xl sm:text-2xl font-bold text-white">Plan Your Tamil Nadu Adventure</h2>
+          <p className="text-gray-400 text-xs sm:text-sm">Discover the soul, culture, and timeless beauty</p>
         </div>
       </div>
 
-      <form onSubmit={handleSubmit} className="space-y-6">
+      <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
         <div>
-          <label className="flex items-center gap-2 text-sm font-semibold text-gray-700 mb-2">
+          <label className="flex items-center gap-2 text-sm font-semibold text-white mb-2">
             <MapPin className="w-4 h-4" />
             Destination in Tamil Nadu
           </label>
           <select
             value={formData.destination}
             onChange={(e) => setFormData({ ...formData, destination: e.target.value })}
-            className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-orange-500 focus:outline-none transition-colors"
+            className="w-full px-4 py-3 bg-black border-2 border-gray-700 text-white rounded-xl focus:border-[#b415ff] focus:outline-none transition-colors"
             required
           >
             <option value="">Select a destination</option>
@@ -179,9 +179,9 @@ export default function TripForm({ onSubmit, isLoading }: TripFormProps) {
           </select>
         </div>
 
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
-            <label className="flex items-center gap-2 text-sm font-semibold text-gray-700 mb-2">
+            <label className="flex items-center gap-2 text-sm font-semibold text-white mb-2">
               <Calendar className="w-4 h-4" />
               Duration (Days)
             </label>
@@ -191,13 +191,13 @@ export default function TripForm({ onSubmit, isLoading }: TripFormProps) {
               max="30"
               value={formData.duration}
               onChange={(e) => setFormData({ ...formData, duration: parseInt(e.target.value) })}
-              className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-orange-500 focus:outline-none transition-colors"
+              className="w-full px-4 py-3 bg-black border-2 border-gray-700 text-white rounded-xl focus:border-[#df8908] focus:outline-none transition-colors"
               required
             />
           </div>
 
           <div>
-            <label className="flex items-center gap-2 text-sm font-semibold text-gray-700 mb-2">
+            <label className="flex items-center gap-2 text-sm font-semibold text-white mb-2">
               <Users className="w-4 h-4" />
               Travelers
             </label>
@@ -207,27 +207,27 @@ export default function TripForm({ onSubmit, isLoading }: TripFormProps) {
               max="20"
               value={formData.travelers}
               onChange={(e) => setFormData({ ...formData, travelers: parseInt(e.target.value) })}
-              className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-orange-500 focus:outline-none transition-colors"
+              className="w-full px-4 py-3 bg-black border-2 border-gray-700 text-white rounded-xl focus:border-[#df8908] focus:outline-none transition-colors"
               required
             />
           </div>
         </div>
 
         <div>
-          <label className="flex items-center gap-2 text-sm font-semibold text-gray-700 mb-2">
+          <label className="flex items-center gap-2 text-sm font-semibold text-white mb-2">
             <DollarSign className="w-4 h-4" />
             Budget
           </label>
-          <div className="grid grid-cols-3 gap-3">
+          <div className="grid grid-cols-3 gap-2 sm:gap-3">
             {['budget', 'moderate', 'luxury'].map(budget => (
               <button
                 key={budget}
                 type="button"
                 onClick={() => setFormData({ ...formData, budget })}
-                className={`px-4 py-3 rounded-xl font-medium transition-all ${
+                className={`px-3 sm:px-4 py-3 rounded-xl font-medium transition-all text-sm sm:text-base ${
                   formData.budget === budget
-                    ? 'bg-gradient-to-br from-orange-500 to-red-600 text-white shadow-lg'
-                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                    ? 'bg-gradient-to-br from-[#b415ff] to-[#df8908] text-white shadow-lg shadow-purple-500/50'
+                    : 'bg-black border border-gray-700 text-gray-300 hover:bg-gray-800'
                 }`}
               >
                 {budget.charAt(0).toUpperCase() + budget.slice(1)}
@@ -237,7 +237,7 @@ export default function TripForm({ onSubmit, isLoading }: TripFormProps) {
         </div>
 
         <div>
-          <label className="flex items-center gap-2 text-sm font-semibold text-gray-700 mb-2">
+          <label className="flex items-center gap-2 text-sm font-semibold text-white mb-2">
             Interests & Preferences
           </label>
           <div className="relative">
@@ -245,7 +245,7 @@ export default function TripForm({ onSubmit, isLoading }: TripFormProps) {
               value={formData.interests}
               onChange={(e) => setFormData({ ...formData, interests: e.target.value })}
               placeholder="E.g., temples, beaches, adventure, food tours, wildlife..."
-              className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-orange-500 focus:outline-none transition-colors resize-none"
+              className="w-full px-4 py-3 bg-black border-2 border-gray-700 text-white placeholder-gray-500 rounded-xl focus:border-[#b415ff] focus:outline-none transition-colors resize-none"
               rows={3}
             />
             <button
@@ -254,7 +254,7 @@ export default function TripForm({ onSubmit, isLoading }: TripFormProps) {
               className={`absolute bottom-3 right-3 p-2 rounded-lg transition-colors ${
                 isRecording
                   ? 'bg-red-500 text-white animate-pulse'
-                  : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                  : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
               }`}
             >
               <Mic className="w-5 h-5" />
@@ -263,7 +263,7 @@ export default function TripForm({ onSubmit, isLoading }: TripFormProps) {
         </div>
 
         <div>
-          <label className="flex items-center gap-2 text-sm font-semibold text-gray-700 mb-2">
+          <label className="flex items-center gap-2 text-sm font-semibold text-white mb-2">
             <ImageIcon className="w-4 h-4" />
             Reference Images (Optional)
           </label>
@@ -277,10 +277,10 @@ export default function TripForm({ onSubmit, isLoading }: TripFormProps) {
           />
           <label
             htmlFor="image-upload"
-            className="flex items-center justify-center gap-2 w-full px-4 py-3 border-2 border-dashed border-gray-300 rounded-xl hover:border-orange-500 cursor-pointer transition-colors"
+            className="flex items-center justify-center gap-2 w-full px-4 py-3 border-2 border-dashed border-gray-700 rounded-xl hover:border-[#df8908] cursor-pointer transition-colors"
           >
             <ImageIcon className="w-5 h-5 text-gray-400" />
-            <span className="text-gray-600">Upload images for inspiration</span>
+            <span className="text-gray-400 text-sm sm:text-base">Upload images for inspiration</span>
           </label>
 
           {formData.images.length > 0 && (
@@ -304,7 +304,7 @@ export default function TripForm({ onSubmit, isLoading }: TripFormProps) {
         <button
           type="submit"
           disabled={isLoading}
-          className="w-full py-4 bg-gradient-to-r from-orange-500 to-red-600 text-white font-bold rounded-xl hover:shadow-lg transform hover:scale-[1.02] transition-all disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+          className="w-full py-3 sm:py-4 bg-gradient-to-r from-[#b415ff] to-[#df8908] text-white font-bold rounded-xl hover:shadow-lg hover:shadow-purple-500/50 transform hover:scale-[1.02] transition-all disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
         >
           {isLoading ? (
             <span className="flex items-center justify-center gap-2">
