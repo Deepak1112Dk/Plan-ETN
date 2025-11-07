@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { MapPin, Calendar, DollarSign, Users, Sparkles, Mic, Image as ImageIcon } from 'lucide-react';
+import { MapPin, Calendar, DollarSign, Users, Sparkles, Mic, Image as ImageIcon, Languages, Search } from 'lucide-react';
 
 interface TripFormProps {
   onSubmit: (data: TripFormData) => void;
@@ -13,6 +13,7 @@ export interface TripFormData {
   travelers: number;
   interests: string;
   images: Array<{ data: string; mimeType: string; url: string }>;
+  language: string;
 }
 
 export default function TripForm({ onSubmit, isLoading }: TripFormProps) {
@@ -22,10 +23,12 @@ export default function TripForm({ onSubmit, isLoading }: TripFormProps) {
     budget: 'moderate',
     travelers: 2,
     interests: '',
-    images: []
+    images: [],
+    language: 'english'
   });
 
   const [isRecording, setIsRecording] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
 
   const tamilNaduDestinations = [
     { district: 'Chennai', places: ['Marina Beach', 'Kapaleeshwarar Temple', 'Fort St. George', 'Government Museum', 'Valluvar Kottam', 'Parthasarathy Temple'] },
@@ -74,6 +77,24 @@ export default function TripForm({ onSubmit, isLoading }: TripFormProps) {
   ];
 
   const allDestinations = tamilNaduDestinations.flatMap(d => [d.district, ...d.places]).sort();
+
+  const filteredDestinations = tamilNaduDestinations.map(district => ({
+    ...district,
+    places: district.places.filter(place =>
+      place.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      district.district.toLowerCase().includes(searchQuery.toLowerCase())
+    ),
+    districtMatches: district.district.toLowerCase().includes(searchQuery.toLowerCase())
+  })).filter(district => district.districtMatches || district.places.length > 0);
+
+  const languages = [
+    { code: 'english', name: 'English' },
+    { code: 'tamil', name: 'தமிழ்' },
+    { code: 'hindi', name: 'हिन्दी' },
+    { code: 'telugu', name: 'తెలుగు' },
+    { code: 'kannada', name: 'ಕನ್ನಡ' },
+    { code: 'malayalam', name: 'മലയാളം' }
+  ];
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -161,6 +182,16 @@ export default function TripForm({ onSubmit, isLoading }: TripFormProps) {
             <MapPin className="w-4 h-4" />
             Destination in Tamil Nadu
           </label>
+          <div className="relative mb-2">
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
+            <input
+              type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder="Search destinations..."
+              className="w-full pl-10 pr-4 py-2 bg-black border border-gray-700 text-white placeholder-gray-500 rounded-lg focus:border-[#b415ff] focus:outline-none transition-colors"
+            />
+          </div>
           <select
             value={formData.destination}
             onChange={(e) => setFormData({ ...formData, destination: e.target.value })}
@@ -168,7 +199,7 @@ export default function TripForm({ onSubmit, isLoading }: TripFormProps) {
             required
           >
             <option value="">Select a destination</option>
-            {tamilNaduDestinations.map(item => (
+            {filteredDestinations.map(item => (
               <optgroup key={item.district} label={item.district}>
                 <option value={item.district}>{item.district} (District)</option>
                 {item.places.map(place => (
@@ -234,6 +265,25 @@ export default function TripForm({ onSubmit, isLoading }: TripFormProps) {
               </button>
             ))}
           </div>
+        </div>
+
+        <div>
+          <label className="flex items-center gap-2 text-sm font-semibold text-white mb-2">
+            <Languages className="w-4 h-4" />
+            Language
+          </label>
+          <select
+            value={formData.language}
+            onChange={(e) => setFormData({ ...formData, language: e.target.value })}
+            className="w-full px-4 py-3 bg-black border-2 border-gray-700 text-white rounded-xl focus:border-[#b415ff] focus:outline-none transition-colors"
+            required
+          >
+            {languages.map(lang => (
+              <option key={lang.code} value={lang.code}>
+                {lang.name}
+              </option>
+            ))}
+          </select>
         </div>
 
         <div>

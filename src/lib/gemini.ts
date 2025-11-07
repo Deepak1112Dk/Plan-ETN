@@ -8,6 +8,7 @@ export interface TripRequest {
   travelers: number;
   interests?: string;
   images?: Array<{ data: string; mimeType: string }>;
+  language?: string;
 }
 
 export interface TripResponse {
@@ -27,6 +28,20 @@ export interface TripResponse {
 }
 
 export async function generateTrip(request: TripRequest): Promise<string> {
+  const languageMap: { [key: string]: string } = {
+    english: 'English',
+    tamil: 'Tamil',
+    hindi: 'Hindi',
+    telugu: 'Telugu',
+    kannada: 'Kannada',
+    malayalam: 'Malayalam'
+  };
+
+  const selectedLanguage = request.language ? languageMap[request.language] || 'English' : 'English';
+  const languageInstruction = request.language && request.language !== 'english'
+    ? `\n\nIMPORTANT: Generate the ENTIRE response in ${selectedLanguage} language. All text, headings, descriptions, and content must be written in ${selectedLanguage}.`
+    : '';
+
   const prompt = `You are an expert travel planner specializing in Tamil Nadu tourism. Generate a detailed trip itinerary for:
 
 Destination: ${request.destination}, Tamil Nadu
@@ -44,7 +59,7 @@ Please provide:
 6. Best time to visit each place
 7. Estimated costs breakdown
 
-Format the response in a clear, structured way with headings and bullet points. Focus on showcasing Tamil Nadu's rich culture, temples, beaches, hill stations, and heritage sites.`;
+Format the response in a clear, structured way with headings and bullet points. Focus on showcasing Tamil Nadu's rich culture, temples, beaches, hill stations, and heritage sites.${languageInstruction}`;
 
   const parts: Array<{ text?: string; inline_data?: { mime_type: string; data: string } }> = [
     { text: prompt }

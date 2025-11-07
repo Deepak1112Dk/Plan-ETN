@@ -33,7 +33,8 @@ function App() {
         budget: data.budget,
         travelers: data.travelers,
         interests: data.interests,
-        images: data.images
+        images: data.images,
+        language: data.language
       });
       setCurrentTrip(itinerary);
       setCurrentTripData(data);
@@ -74,7 +75,8 @@ function App() {
       budget: trip.budget,
       travelers: trip.travelers,
       interests: '',
-      images: []
+      images: [],
+      language: 'english'
     });
     setView('trip');
   };
@@ -117,8 +119,6 @@ function App() {
               </button>
               <a
                 href="https://exploretamilagam.netlify.app/"
-                target="_blank"
-                rel="noopener noreferrer"
                 className="flex items-center gap-2 px-3 sm:px-4 py-2 bg-gray-900 border-2 border-gray-800 text-white font-semibold rounded-xl hover:border-[#df8908] transition-all text-sm sm:text-base"
               >
                 <Home className="w-4 h-4" />

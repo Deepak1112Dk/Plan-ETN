@@ -1,4 +1,4 @@
-import { Calendar, MapPin, Hotel, Utensils, Lightbulb, Save, Share2 } from 'lucide-react';
+import { Calendar, MapPin, Hotel, Utensils, Lightbulb, Save } from 'lucide-react';
 
 interface TripDisplayProps {
   content: string;
@@ -66,20 +66,6 @@ export default function TripDisplay({ content, onSave, isSaving }: TripDisplayPr
     return formatted.join('');
   };
 
-  const handleShare = async () => {
-    if (navigator.share) {
-      try {
-        await navigator.share({
-          title: 'My Tamil Nadu Trip Plan',
-          text: 'Check out my trip plan for Tamil Nadu!',
-        });
-      } catch (err) {
-        console.log('Share cancelled');
-      }
-    } else {
-      alert('Sharing is not supported on this browser');
-    }
-  };
 
   return (
     <div className="bg-gray-900 rounded-2xl shadow-xl shadow-purple-500/20 p-4 sm:p-6 md:p-8 max-w-4xl mx-auto border border-gray-800">
@@ -94,25 +80,16 @@ export default function TripDisplay({ content, onSave, isSaving }: TripDisplayPr
           </div>
         </div>
 
-        <div className="flex gap-2 w-full sm:w-auto">
+        {onSave && (
           <button
-            onClick={handleShare}
-            className="p-3 bg-gray-800 hover:bg-gray-700 rounded-xl transition-colors border border-gray-700"
-            title="Share trip"
+            onClick={onSave}
+            disabled={isSaving}
+            className="flex items-center gap-2 px-4 py-3 bg-gradient-to-r from-[#b415ff] to-[#df8908] text-white font-semibold rounded-xl hover:opacity-90 transition-all disabled:opacity-50 w-full sm:w-auto justify-center"
           >
-            <Share2 className="w-5 h-5 text-gray-300" />
+            <Save className="w-5 h-5" />
+            {isSaving ? 'Saving...' : 'Save Trip'}
           </button>
-          {onSave && (
-            <button
-              onClick={onSave}
-              disabled={isSaving}
-              className="flex items-center gap-2 px-4 py-3 bg-gradient-to-r from-[#b415ff] to-[#df8908] text-white font-semibold rounded-xl hover:opacity-90 transition-all disabled:opacity-50 flex-1 sm:flex-initial justify-center"
-            >
-              <Save className="w-5 h-5" />
-              {isSaving ? 'Saving...' : 'Save Trip'}
-            </button>
-          )}
-        </div>
+        )}
       </div>
 
       <div className="prose max-w-none">
