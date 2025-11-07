@@ -182,16 +182,67 @@ export default function TripForm({ onSubmit, isLoading }: TripFormProps) {
             <MapPin className="w-4 h-4" />
             Destination in Tamil Nadu
           </label>
-          <div className="relative mb-2">
+          <div className="relative mb-3">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
             <input
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search destinations..."
-              className="w-full pl-10 pr-4 py-2 bg-black border border-gray-700 text-white placeholder-gray-500 rounded-lg focus:border-[#b415ff] focus:outline-none transition-colors"
+              className="w-full pl-10 pr-4 py-2 bg-black border-2 border-gray-700 text-white placeholder-gray-500 rounded-lg focus:border-[#b415ff] focus:outline-none transition-colors"
             />
           </div>
+
+          {searchQuery && filteredDestinations.length > 0 && (
+            <div className="mb-3 p-3 bg-black border-2 border-gray-700 rounded-lg max-h-64 overflow-y-auto">
+              <p className="text-xs text-gray-400 mb-2">Search Results:</p>
+              <div className="space-y-2">
+                {filteredDestinations.map(district => (
+                  <div key={district.district}>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setFormData({ ...formData, destination: district.district });
+                        setSearchQuery('');
+                      }}
+                      className={`w-full text-left px-3 py-2 rounded-lg transition-all text-sm ${
+                        formData.destination === district.district
+                          ? 'bg-gradient-to-r from-[#b415ff] to-[#df8908] text-white'
+                          : 'bg-gray-800 text-white hover:bg-gray-700'
+                      }`}
+                    >
+                      {district.district} (District)
+                    </button>
+                    {district.places.map(place => (
+                      <button
+                        key={place}
+                        type="button"
+                        onClick={() => {
+                          setFormData({ ...formData, destination: place });
+                          setSearchQuery('');
+                        }}
+                        className={`w-full text-left px-3 py-2 rounded-lg transition-all text-sm ml-2 ${
+                          formData.destination === place
+                            ? 'bg-gradient-to-r from-[#b415ff] to-[#df8908] text-white'
+                            : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
+                        }`}
+                      >
+                        {place}
+                      </button>
+                    ))}
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {formData.destination && (
+            <div className="mb-3 p-3 bg-gradient-to-br from-[#b415ff]/10 to-[#df8908]/10 border border-[#b415ff]/30 rounded-lg">
+              <p className="text-xs text-gray-400 mb-1">Selected:</p>
+              <p className="text-white font-medium text-sm">{formData.destination}</p>
+            </div>
+          )}
+
           <select
             value={formData.destination}
             onChange={(e) => setFormData({ ...formData, destination: e.target.value })}
@@ -199,7 +250,7 @@ export default function TripForm({ onSubmit, isLoading }: TripFormProps) {
             required
           >
             <option value="">Select a destination</option>
-            {filteredDestinations.map(item => (
+            {tamilNaduDestinations.map(item => (
               <optgroup key={item.district} label={item.district}>
                 <option value={item.district}>{item.district} (District)</option>
                 {item.places.map(place => (
